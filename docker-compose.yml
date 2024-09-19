@@ -1,0 +1,23 @@
+services:
+  mysql:
+    image: mysql:8
+    environment:
+      MYSQL_USER: usuario #-u usuario
+      MYSQL_ROOT_PASSWORD: 12345678
+      MYSQL_PASSWORD: senha #-p senha
+    ports:
+      - "3306:3306"
+    volumes:
+      - faculdade-mysql:/var/lib/mysql
+
+
+volumes:
+  faculdade-mysql:
+
+#Para se conectar ao banco de dados utilizar comando:
+# docker exec -it <nome-container> mysql -u usuario -p
+    
+
+
+  
+  
