@@ -5,10 +5,14 @@ services:
       MYSQL_USER: usuario #-u usuario
       MYSQL_ROOT_PASSWORD: 12345678
       MYSQL_PASSWORD: senha #-p senha
+      # Configura o charset e collation
+      MYSQL_CHARSET: utf8mb4
+      MYSQL_COLLATION: utf8mb4_general_ci
     ports:
       - "3306:3306"
     volumes:
       - faculdade-mysql:/var/lib/mysql
+      - ./my.cnf:/etc/mysql/conf.d/my.cnf # Monta o arquivo my.cnf
 
 
 volumes:

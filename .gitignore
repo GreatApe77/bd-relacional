@@ -1,3 +1,4 @@
 *.db
 .env
 db/faculdade/vendas
+db/faculdade/bd_vendas
