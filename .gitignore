@@ -2,3 +2,4 @@
 .env
 db/faculdade/vendas
 db/faculdade/bd_vendas
+db/faculdade/exercicios
