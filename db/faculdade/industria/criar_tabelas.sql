@@ -47,8 +47,7 @@ CREATE TABLE Tecnico (
 CREATE TABLE Fornecedor (
     id_Fornecedor INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100) NOT NULL,
-    cnpj VARCHAR(100) NOT NULL,
-    status ENUM('ativo', 'inativo') NOT NULL
+    cnpj VARCHAR(100) NOT NULL
 );
 
 -- Tabela de Endereços (associada a Fornecedor)
