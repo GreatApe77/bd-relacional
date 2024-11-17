@@ -89,7 +89,7 @@ CREATE TABLE Manutencao (
     id_Manutencao INT PRIMARY KEY AUTO_INCREMENT,
     Equipamento_id_Equipamento INT NOT NULL,
     Tecnico_id_Tecnico INT NOT NULL,
-    tipo_manutencao ENUM('preventiva', 'corretiva','emergencial') NOT NULL,
+    tipo_manutencao ENUM('preventiva', 'corretiva') NOT NULL,
     data_solicitacao DATE NOT NULL DEFAULT(NOW()),
     data_inicio DATE,
     data_conclusao DATE
