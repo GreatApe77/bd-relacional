@@ -119,13 +119,19 @@ INSERT INTO Manutencao (Equipamento_id_Equipamento, Tecnico_id_Tecnico, tipo_man
 (5, 6, 'corretiva', '2024-11-15', '2024-11-16', NULL),
 (6, 1, 'preventiva', '2024-12-01', '2024-12-02', '2024-12-03'),
 (2, 2, 'corretiva', '2024-12-20', NULL, NULL),
-(1, 3, 'corretiva', '2025-01-05', '2025-01-06', '2025-01-07'),
+(1, 8, 'corretiva', '2025-01-05', '2025-01-06', '2025-01-07'),
 (4, 4, 'preventiva', '2025-01-15', NULL, NULL),
+(2, 8, 'corretiva', '2020-07-01', '2020-07-03', '2020-07-05'),
 (5, 5, 'corretiva', '2025-02-01', '2025-02-02', NULL);
 
 -- Inserindo dados na tabela Manutencao_Peca
 INSERT INTO Manutencao_Peca (Manutencao_id_Manutencao, Peca_id_Peca, quantidade) VALUES
 (1, 1, 10),
+(1,2,1),
+(14,1,2),
+(14,3,5),
+(16,5,1),
+(16,2,2),
 (2, 2, 1),
 (3, 3, 5);
 
