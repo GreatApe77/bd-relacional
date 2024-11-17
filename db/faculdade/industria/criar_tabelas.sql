@@ -12,9 +12,8 @@ CREATE TABLE Modelo (
 -- Tabela de Localização
 CREATE TABLE Localizacao (
     id_Localizacao INT PRIMARY KEY AUTO_INCREMENT,
-    predio VARCHAR(1) NOT NULL,   -- Exemplo: "Setor A - Linha 1"
-    setor INT                      -- Exemplo: "Produção"
-    -- outros atributos específicos da localização
+    predio VARCHAR(1) NOT NULL,   
+    setor INT
 );
 
 -- Tabela de Equipamentos
@@ -31,7 +30,7 @@ CREATE TABLE Equipamento (
 -- Tabela de Especialidades
 CREATE TABLE Especialidade (
     id_Especialidade INT PRIMARY KEY AUTO_INCREMENT,
-    descricao VARCHAR(100) NOT NULL  -- Exemplo: "Máquinas Pesadas", "Elétrica", "Mecânica"
+    descricao VARCHAR(100) NOT NULL  -- Exemplo: "Máquinas Pesadas","Máquinas Leves" "Elétrica", "Mecânica"
 );
 
 -- Tabela de Técnicos
@@ -40,14 +39,14 @@ CREATE TABLE Tecnico (
     nome VARCHAR(100) NOT NULL,
     anos_experiencia INT NOT NULL,
     valor_diaria DECIMAL(10,2) NOT NULL,
-    status ENUM('ocupado', 'descoupado') NOT NULL
+    status ENUM('ocupado', 'desocupado') NOT NULL
 );
 
 -- Tabela de Fornecedores
 CREATE TABLE Fornecedor (
     id_Fornecedor INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100) NOT NULL,
-    cnpj VARCHAR(100) NOT NULL
+    cnpj VARCHAR(100) NOT NULL UNIQUE
 );
 
 -- Tabela de Endereços (associada a Fornecedor)
@@ -56,7 +55,10 @@ CREATE TABLE Endereco (
     Fornecedor_id_Fornecedor INT NOT NULL,
     numero VARCHAR(255),
     logradouro VARCHAR(255),
-    cep VARCHAR(255)
+    cep VARCHAR(8),
+    complemento VARCHAR(255),
+    uf VARCHAR(2),
+    municipio VARCHAR(255)
 );
 
 -- Tabela de Peças
@@ -87,11 +89,11 @@ CREATE TABLE Manutencao (
     id_Manutencao INT PRIMARY KEY AUTO_INCREMENT,
     Equipamento_id_Equipamento INT NOT NULL,
     Tecnico_id_Tecnico INT NOT NULL,
-    tipo_manutencao ENUM('preventiva', 'corretiva') NOT NULL,
-    data_solicitacao DATE NOT NULL,
-    data_inicio DATE NOT NULL,
-    data_conclusao DATE NOT NULL,
-    status ENUM('pendente', 'em andamento', 'concluída') NOT NULL
+    tipo_manutencao ENUM('preventiva', 'corretiva','emergencial') NOT NULL,
+    data_solicitacao DATE NOT NULL DEFAULT(NOW()),
+    data_inicio DATE,
+    data_conclusao DATE
+    #status ENUM('pendente', 'em andamento', 'concluída') NOT NULL
 );
 
 -- Tabela de Manutencao_Peca (associação entre Manutencao e Peca)
