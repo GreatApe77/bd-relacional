@@ -9,7 +9,8 @@ INSERT INTO Modelo (nome, fabricante) VALUES
 ('Modelo C', 'Fabricante Z'),
 ('Modelo D', 'Fabricante W'),
 ('Modelo E', 'Fabricante V'),
-('Modelo F', 'Fabricante U');
+('Modelo F', 'Fabricante U'),
+('Caldeira Problemática', 'Problemas 0800 S.A');
 
 -- Inserindo dados na tabela Localizacao
 INSERT INTO Localizacao (predio, setor) VALUES
@@ -27,7 +28,8 @@ INSERT INTO Equipamento (Modelo_id_Modelo, Localizacao_id_Localizacao, data_aqui
 (3, 3, '2021-03-10', 30000.00, 'inativo', 90),
 (4, 4, '2020-06-15', 20000.00, 'ativo', 120),
 (5, 5, '2019-11-10', 18000.00, 'ativo', 180),
-(6, 6, '2021-08-01', 22000.00, 'inativo', 240);
+(6, 6, '2021-08-01', 22000.00, 'inativo', 240),
+(7, 6, '1999-08-02', 22000.00, 'inativo', 300);
 
 -- Inserindo dados na tabela Especialidade
 INSERT INTO Especialidade (descricao) VALUES
@@ -107,7 +109,7 @@ INSERT INTO Especialidade_Equipamento (Modelo_id_Modelo, Especialidade_id_Especi
 -- Inserindo dados na tabela Manutencao
 INSERT INTO Manutencao (Equipamento_id_Equipamento, Tecnico_id_Tecnico, tipo_manutencao, data_solicitacao, data_inicio, data_conclusao) VALUES
 (1, 1, 'preventiva', '2024-01-10', '2024-01-11', '2024-01-12'),
-(2, 2, 'corretiva', '2024-02-01', '2024-02-02', '2024-02-03'),
+(2, 2, 'preventiva', '2024-02-01', '2024-02-02', '2024-02-03'),
 (3, 3, 'preventiva', '2024-03-01', '2024-03-02', '2024-03-03'),
 (4, 4, 'corretiva', '2024-04-05', '2024-04-06', '2024-04-07'),
 (5, 5, 'preventiva', '2024-05-10', '2024-05-11', '2024-05-12'),
@@ -122,6 +124,14 @@ INSERT INTO Manutencao (Equipamento_id_Equipamento, Tecnico_id_Tecnico, tipo_man
 (1, 8, 'corretiva', '2025-01-05', '2025-01-06', '2025-01-07'),
 (4, 4, 'preventiva', '2025-01-15', NULL, NULL),
 (2, 8, 'corretiva', '2020-07-01', '2020-07-03', '2020-07-05'),
+(7, 2, 'corretiva', '2000-07-01', '2000-07-03', '2000-07-05'),
+(7, 2, 'corretiva', '2001-07-01', '2001-07-03', '2001-07-05'),
+(7, 2, 'corretiva', '2002-07-01', '2002-07-03', '2002-07-05'),
+(7, 2, 'corretiva', '2003-07-01', '2003-07-03', '2003-07-05'),
+(7, 2, 'corretiva', '2004-07-01', '2004-07-03', '2004-07-05'),
+(7, 2, 'corretiva', '2005-07-01', '2005-07-03', '2005-07-05'),
+(7, 2, 'corretiva', '2006-07-01', '2006-07-03', '2006-07-05'),
+(7, 2, 'corretiva', '2007-07-01', '2007-07-03', '2007-07-05'),
 (5, 5, 'corretiva', '2025-02-01', '2025-02-02', NULL);
 
 -- Inserindo dados na tabela Manutencao_Peca

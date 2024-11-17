@@ -37,5 +37,19 @@ GROUP BY tec.nome;
 #que mais necessitam de manutenção corretiva, permitindo identificar possíveis
 #necessidades de substituição.
 
-#SELECT
+SELECT
+e.id_equipamento as 'Equipamento',
+m.nome as 'Modelo',
+count(man.id_Manutencao)  as 'Total de manutenções corretivas',
+(year(now())-year(e.data_aquisicao)) as 'idade do equipamento'
+FROM equipamento e INNER JOIN Modelo m ON e.Modelo_id_Modelo = m.id_Modelo
+INNER JOIN Manutencao man ON man.Equipamento_id_Equipamento = e.id_Equipamento
+WHERE man.tipo_manutencao = 'corretiva'
+GROUP BY e.id_equipamento
+ORDER BY `Total de manutenções corretivas` DESC;
+
+#4. Relatório de Manutenções Pendentes: Listar todas as manutenções pendentes, com
+#informações sobre o técnico designado, o equipamento, o custo estimado da
+#manutenção (peças e mão de obra) e a data da solicitação.
+
 
