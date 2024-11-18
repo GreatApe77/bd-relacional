@@ -51,7 +51,7 @@ ORDER BY `Total de manutenções corretivas` DESC;
 #4. Relatório de Manutenções Pendentes: Listar todas as manutenções pendentes, com
 #informações sobre o técnico designado, o equipamento, o custo estimado da
 #manutenção (peças e mão de obra) e a data da solicitação.
-
+#DUVIDA
 SELECT
     man.id_Manutencao AS 'Código da Manutenção',
     tec.nome AS 'Técnico',
