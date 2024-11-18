@@ -91,8 +91,11 @@ CREATE TABLE Manutencao (
     Tecnico_id_Tecnico INT NOT NULL,
     tipo_manutencao ENUM('preventiva', 'corretiva') NOT NULL,
     data_solicitacao DATE NOT NULL DEFAULT(NOW()),
+    
     data_inicio DATE,
-    data_conclusao DATE
+    data_conclusao DATE,
+    data_previsao_inicio DATE,
+    data_previsao_conclusao DATE
     #status ENUM('pendente', 'em andamento', 'concluída') NOT NULL
 );
 

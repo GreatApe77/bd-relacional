@@ -52,4 +52,31 @@ ORDER BY `Total de manutenções corretivas` DESC;
 #informações sobre o técnico designado, o equipamento, o custo estimado da
 #manutenção (peças e mão de obra) e a data da solicitação.
 
+SELECT
+    man.id_Manutencao AS 'Código da Manutenção',
+    tec.nome AS 'Técnico',
+    e.id_Equipamento AS 'Equipamento',
+    m.nome AS 'Modelo',
+    man.data_solicitacao AS 'Data de Solicitação',
+    (tec.valor_diaria * DATEDIFF(man.data_previsao_conclusao, man.data_previsao_inicio)) AS 'Custo de Mão de Obra',
+    COALESCE(SUM(p.custo * m_p.quantidade), 0) AS 'Custo de Peças',
+    (tec.valor_diaria * DATEDIFF(man.data_previsao_conclusao, man.data_previsao_inicio)) 
+        + COALESCE(SUM(p.custo * m_p.quantidade), 0) AS 'Custo Total Estimado'
+FROM 
+    Manutencao man
+INNER JOIN 
+    Tecnico tec ON tec.id_Tecnico = man.Tecnico_id_Tecnico
+INNER JOIN 
+    Equipamento e ON e.id_Equipamento = man.Equipamento_id_Equipamento
+INNER JOIN 
+    Modelo m ON m.id_Modelo = e.Modelo_id_Modelo
+LEFT JOIN 
+    Manutencao_Peca m_p ON m_p.Manutencao_id_Manutencao = man.id_Manutencao
+LEFT JOIN 
+    Peca p ON m_p.Peca_Id_Peca = p.id_Peca
+WHERE 
+    man.data_inicio IS NULL
+GROUP BY 
+    man.id_Manutencao, tec.nome, e.id_Equipamento, m.nome, man.data_solicitacao, 
+    man.data_previsao_inicio, man.data_previsao_conclusao, tec.valor_diaria;
 
