@@ -22,15 +22,26 @@ ORDER BY e.id_Equipamento, man.tipo_manutencao;
 #2. Relatório de Custos de Manutenção por Técnico: Listar o total de custo das
 #manutenções realizadas por cada técnico, considerando os custos de peças e tempo de
 #trabalho do técnico.
-##DUVIDA
+
 SELECT 
-tec.nome as 'Técnico',
-sum(p.custo*m_p.quantidade) as 'Custo total'
-FROM Tecnico tec
-INNER JOIN Manutencao m ON m.Tecnico_id_Tecnico =tec.id_Tecnico
-LEFT JOIN Manutencao_Peca m_p ON m_p.Manutencao_id_Manutencao = m.id_Manutencao
-LEFT JOIN Peca p ON m_p.Peca_id_Peca = p.id_Peca
-GROUP BY tec.nome;
+    tec.nome AS 'Técnico',
+    SUM(tec.valor_diaria * DATEDIFF(m.data_conclusao, m.data_inicio)) AS 'Custo de Mão de Obra',
+    SUM(COALESCE(p.custo * m_p.quantidade, 0)) AS 'Custo de Peças',
+    SUM(tec.valor_diaria * DATEDIFF(m.data_conclusao, m.data_inicio)) 
+        + SUM(COALESCE(p.custo * m_p.quantidade, 0)) AS 'Custo Total'
+FROM 
+    Tecnico tec
+INNER JOIN 
+    Manutencao m ON m.Tecnico_id_Tecnico = tec.id_Tecnico
+LEFT JOIN 
+    Manutencao_Peca m_p ON m_p.Manutencao_id_Manutencao = m.id_Manutencao
+LEFT JOIN 
+    Peca p ON m_p.Peca_id_Peca = p.id_Peca
+WHERE 
+    m.data_inicio IS NOT NULL AND m.data_conclusao IS NOT NULL
+GROUP BY 
+    tec.nome;
+
 
 
 #3. Relatório de Equipamentos com Maior Frequência de Falhas: Exibir os equipamentos
@@ -51,7 +62,7 @@ ORDER BY `Total de manutenções corretivas` DESC;
 #4. Relatório de Manutenções Pendentes: Listar todas as manutenções pendentes, com
 #informações sobre o técnico designado, o equipamento, o custo estimado da
 #manutenção (peças e mão de obra) e a data da solicitação.
-#DUVIDA
+
 SELECT
     man.id_Manutencao AS 'Código da Manutenção',
     tec.nome AS 'Técnico',
